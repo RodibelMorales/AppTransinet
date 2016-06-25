@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<title>Transinet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="icons/favicon.ico">
+	<link rel="stylesheet" href="jmobile/jquery.mobile-1.4.5.min.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<script src="jmobile/jquery-1.11.1.min.js"></script>
+	<script src="jmobile/jquery.mobile-1.4.5.min.js"></script>
+
+	<script>
+	$(document).on("ready", function(){
+		$('#CierraSesion').click( function(){
+			if (window.localStorage) {
+				var nombre = localStorage.getItem("id_p");
+				console.log(nombre);
+
+				$.ajax({
+					global : false,
+					type: "POST",
+					//url: "http://visionquintanaroo.com/envioPOST/cierraSesion.php",
+					url: "envioPOST/cierraSesion.php",
+					dataType : "html",
+					data: {"usuario": nombre}
+				}).done(function(data){
+					var resultaddCloseSesion = JSON.parse(data);
+
+					if (resultaddCloseSesion.errorcierraSesion == 0){
+						$.mobile.changePage("#dialog", { transition: "pop",role: "dialog" });
+					}else{
+						console.log("Datos 	Eliminados Correctamente");
+						localStorage.clear();
+					}
+				});
+			}else{
+
+			}
+
+		});
+	});
+
+
+	</script>
+</head>
+<body class="fondoApp">
+		<div data-role="page" id="page1">
+			<div data-role="content">
+				<ul data-role="listview" >
+					<li data-role="list-divider"><label><i class="espacioConfig fa fa-cog fa-1x"></i>Configuraciones</label></li>		
+				  		<li  data-icon="false">
+				  			<a class="contenedorConfig" href="#">
+				  				<label>
+				  					<i class="espacioConfig fa fa-user"></i>Perfil de Usuario
+				  				</label>
+				  			</a>
+				  		</li>
+				  		<li  data-icon="false"><a class="contenedorConfig" href="#"><label><i class="espacioConfig fa fa-info-circle"></i>Acerca de</label></a></li>
+				  		<li  data-icon="false" id="CierraSesion"><a class="contenedorConfig"  href="#"><label><i class="espacioConfig fa fa-lock"></i>Cerrar Sesión</label></a></li>
+				  		<li  data-icon="false"><a class="contenedorConfig" href="menuPrincipal.html"><label><i class="espacioConfig fa fa-chevron-circle-left"></i>Volver</label></a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="dialog" class="fondoDialog"  id="dialog" data-close-btn="none" data-transition="slidedown">
+			<div data-role='header'>
+			    <div class='controlaIMG'>
+					<img src='img/logoFinal.png' class='img-responsive'>
+				</div>
+			</div>
+			<div data-role='content'>
+			    <p id='textDialogSuccess'>Ha ocurrido un problema al intentar cerrar sesión</p>
+			    <a data-role='button' href='index.html' id='closeR'>Intentar Nuevamente</a>
+			</div>
+		</div>	
+</body>
+
+</html>

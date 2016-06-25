@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<title>Transinet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="icons/favicon.ico">
+	<link rel="stylesheet" href="jmobile/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/estilosquery.css">
+	<script src="jmobile/jquery-1.11.1.min.js"></script>
+	<script src="jmobile/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/confirmaVehiculo.js"></script>
+</head>
+<body  class="fondoApp">
+	<div data-role="page" id="page1">
+		<div class="controlaIMG">
+			<img src="img/logoFinal.png" class="img-responsive">
+		</div>
+		<div data-role="content">
+			<label id="titleWelcomeLogin">Ingresa las placas del vehiculo</label>
+			<form  method="post" id="formVerificaVehiculo">
+					<input name="buscaVehiculo" id="buscaVehiculo" data-mini="true" placeholder="Placa del vehiculo" required>
+				<label id="iniciarSesion">Buscar vehiculo</label>
+				<div class="controlaImgLogin">
+					<fieldset class="ui-grid-a">
+						<div class="ui-block-a"><a href="menuPrincipal.html"><img src="icons/back.png" class="bttnBack"></a></div>
+						<div class="ui-block-b"><input type=image src="icons/buscar.png" class="bttnBack" id="inputBuscaVehiculo"></div>
+					</fieldset>
+				</div>		
+			</form>			
+		</div>
+		<div id="ResultadoVehiculo">
+			<div data-role="listview" id="detailsVehiculo">
+
+			</div>
+		</div>	
+	</div>
+		<!--Mensaje Emergente en caso de existir algun error-->
+		<div data-role="dialog" class="fondoDialog" id="diverror" data-close-btn="none" data-transition="slidedown">
+			<div data-role='header'>
+    			<div class='controlaIMG'>
+					<img src='img/logoFinal.png' class='img-responsive'>
+				</div>
+  			</div>
+  			<div data-role='content'>
+   				<p id='textDialogSuccess'>La placa ingresada no existe!</p>
+   				<a data-role='button' href='verifica_vehiculo.html'  id='closeR1'>Intentar Nuevamente</a>
+			</div>
+		</div>
+</body>
+</html>

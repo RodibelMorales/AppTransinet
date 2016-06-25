@@ -1,0 +1,288 @@
+@font-face { font-family: 'Gothamy'; src: local('Gotham Book'), local('Gotham-Book'); font-weight: normal; font-style: normal; font-variant: normal;}
+@font-face { font-family: 'Gothamy'; src: local('Gotham Bold'), local('Gotham-Bold'); font-weight: bold; font-style: normal; font-variant: normal; }
+@font-face { font-family: 'Gothamy'; src: local('Gotham Book Italic'), local('Gotham-BookItalic'); font-weight: normal; font-style: italic; font-variant: normal; }
+@font-face { font-family: 'Gothamy'; src: local('Gotham Bold Italic'), local('Gotham-BoldItalic'); font-weight: bold; font-style: italic; font-variant: normal;}
+body{
+	font-family:Gotham;
+  margin: 0%;
+}
+.fondoApp{
+	background: url('../img/fondo.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute !important;
+  margin: 0%;
+}
+/*Inicio de los estilos para el login de los polis*/
+.img-responsive{
+	width: 100%;
+	height: 100%;
+	min-width: 0%;
+	min-height: 0%;
+	max-width: 100%;
+	max-height: 100%
+  }
+.controlaIMG {
+  width: 40%;
+  height: 5em;
+  margin-left: 30%;
+  margin-top: 10%;
+  margin-bottom: 6%;
+}
+.ui-mini .ui-input-text input, .ui-mini .ui-input-search input, .ui-input-text.ui-mini input, .ui-input-search.ui-mini input, .ui-mini textarea.ui-input-text, textarea.ui-mini {
+  font-size: 20px;
+  border-radius: 25px;
+  }
+#titleWelcomeLogin {
+    font-size: 10pt;
+    font-family: Gotham;
+    text-align: center;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.ui-shadow {
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+  	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.15);
+  	box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+  }
+.img-login {
+  	padding-left: 42%;
+  	padding-right: 40%;
+  }
+.controlaImgLoging{
+	 width: 65%;
+  	height: 15em;
+  	padding-left: 18%;
+}
+.ui-input-text.ui-body-inherit.ui-corner-all.ui-mini.ui-shadow-inset {
+  margin-bottom: 5%;
+  }
+label#iniciarSesion {
+  font-size: 10pt;
+  text-align: center;
+  }
+#inputEnvia {
+    padding-left: 53%;
+    width: 40%;
+}
+#inputIniciaBusqueda {
+    padding-left: 55%;
+    width: 42%;
+}
+#inputBuscaVehiculo {
+    padding-left: 53%;
+    width: 40%;
+}
+#btnConfirmaVehiculo{
+    padding-left: 53%;
+    width: 40%;
+}
+.bttnBack{
+  width: 40%;
+}
+#inputFormsLogin {
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+}
+#inputForms {
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+}
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+  background-color: #f9f9f9;
+  border-color: #bbb;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(243, 243, 243, 0);
+  }
+/*Inician estilos para el modulo Menuprincipal*/
+.circuloColumna1 {
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     background: #ffc500;
+    margin-left: 20%;
+     margin-bottom: 10%;
+     margin-top: 0%;
+  }
+.circuloColumna2 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00ca8e;
+  margin-left: 20%;
+  margin-bottom: 12%;
+  margin-top: 10%;
+
+}
+.circuloColumna3 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2778c2;
+  margin-left: 20%;
+  margin-bottom: 12%;
+  margin-top: 10%;
+}
+.circuloColumna4 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f87d00;
+  margin-left: 20%;
+  margin-bottom: 12%;
+  margin-top: 10%;
+}
+#sizeText1 {
+  font-size: 10pt;
+  text-align: center;
+  padding-top: 80px;
+  }
+#sizeTextM1 {
+  font-size: 10pt;
+  text-align: center;
+  padding-top: 5px;
+}
+#sizeText2 {
+  font-size: 25pt;
+  text-align: center;
+  padding-top: 80px;
+  }
+.sizeIcons{
+  width: 50%;
+  height: 50%;
+  min-width: 0%;
+  min-height: 0%;
+  max-width: 65%;
+  max-height: 65%;
+  margin-left: 25%;
+  margin-top: 24%;
+  }
+  .circuloColumna1:hover{
+    background-color: #EF8115;
+  }
+/*Estilos para el modulo NuevaMulta*/
+
+#basic { font-size: 12pt;}
+#basictextCenter{ text-align: center; font-size: 12pt;}
+#fieldset { min-width: 0; border: solid; }
+
+#textLeyend {
+  color: inherit;
+  text-shadow: inherit;
+  font-size: 15px;
+  text-align: center;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-color: rgba(249, 249, 249, 0);
+    border-color: rgba(187, 187, 187, 0);
+    color: #000;
+    text-shadow: 0 1px 0 rgba(243, 243, 243, 0);
+}
+div#textOpciones {
+    margin-top: 15%;
+}
+
+#inputNplaca {
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 42%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/*Estilos personalisados para el textarea*/
+.ui-input-text input, .ui-input-search input, textarea.ui-input-text {
+    padding: .4em;
+    line-height: 1.4em;
+    display: block;
+    width: 95%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    margin-left: 2%;
+}
+/*Estilos personalisados del select*/
+.ui-select {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    position: relative;
+    width: 95%;
+    padding-left: 2%;
+    padding-bottom: 3%;
+}
+/*Estilos para el cuadro de dialogo*/
+.ui-dialog-contain {
+    width: 92.5%;
+    max-width: 500px;
+    margin: 40% auto 1em;
+    padding: 0;
+    position: relative;
+    top: -1em;
+}
+#textDialogSuccess {
+    text-align: center;
+    font-size: 15pt;
+}
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited {
+    background-color: #4DA242;
+    border-color: #EFEFEF;
+    color: #FFF;
+    text-shadow: 0 1px 0 rgba(243, 243, 243, 0);
+}
+.fondoDialog {
+    background: rgba(128, 128, 128, 0.74) !important;
+}
+#ResultadoBusqueda { /*Estilo para el div contenedor de la busqueda*/
+    margin-top: 10% !important;
+    margin-left: 0%;
+    width: 100%;
+}
+#headerInfo{
+    background-color: #158E39 !important;
+    border-color: #ddd !important;
+    color: #E0E0E0 !important;
+    text-shadow: 0 1px 0 rgba(238, 238, 238, 0) !important;
+}
+.bodyInfo{
+    padding: 0.5em .5em;
+    background: rgba(10, 149, 254, 0.19);
+    margin-bottom: 10px;
+}
+.poli {
+    width: 70%;
+    margin-top: -30%;
+    margin-left: 10%;
+}
+textarea.ui-input-text.ui-textinput-autogrow {
+    overflow: auto ;
+}
+.detallesC{
+  display: none;
+}
+.OcultaTexto{
+  display: none !important;
+}
+.contenedorConfig{
+    background-color: rgba(35, 101, 85, 0.62) !important;
+    border-color: #EFEFEF !important;
+    color: #FFF !important;
+    text-shadow: 0 1px 0 rgba(243, 243, 243, 0) !important;
+}
+.espacioConfig{
+  margin-right: 10px;
+}
+.ui-block-a.espacioDivMenu {
+    width: 30%;
+}
+.btnError{
+    background-color: #DC1515 !important;
+}

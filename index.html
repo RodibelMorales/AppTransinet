@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+	<title>Transinet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="icons/favicon.ico">
+	<link rel="stylesheet" href="jmobile/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/estilosquery.css">
+
+</head>
+<body class="fondoApp">
+	<div data-role="page" id="contenido">
+		<div class="controlaIMG">
+			<img src="img/logoFinal.png" class="img-responsive">
+		</div> 
+		<div data-role="content">
+			<label id="titleWelcomeLogin">Bienvenido</label>
+			<form id="formLoginPolice" method="POST"  >
+					<input type="text" 	   name="user" data-mini="true" placeholder="Usuario" id="user" required/>
+
+					<input type="password" name="password" data-mini="true" placeholder="Constraseña" id="password" required/>
+				
+				<div class="controlaImgLogin">
+					<input type=image src="icons/login_transinet.png" id="inputFormsLogin" >
+				</div>			
+			</form>			
+		</div>
+		<!--Mensaje Emergente den caso de haber un error con el inicio de sesion-->
+
+	</div>
+		<div data-role="dialog" class="fondoDialog"  id="dialog" data-close-btn="none" data-transition="slidedown">
+			<div data-role='header'>
+			    <div class='controlaIMG'>
+					<img src='img/logoFinal.png' class='img-responsive'>
+				</div>
+			</div>
+			<div data-role='content'>
+			    <p id='textDialogSuccess'>Usuario y/o Contraseña incorrectos</p>
+			    <a data-role='button' href='index.html' id='closeR' class="btnError">Intentar Nuevamente</a>
+			</div>
+		</div>	
+</body>
+	<script src="jmobile/jquery-1.11.1.min.js"></script>
+	<script src="jmobile/jquery.mobile-1.4.5.min.js"></script>
+	
+
+
+<script type="text/javascript">
+
+
+$("#inputFormsLogin").click(function(e){
+	e.preventDefault();
+	try{
+	var dataFormulario = $("#formLoginPolice").serialize();
+	$.ajax({
+		type: "POST",
+		url : "http://chanitoledo.com/transinet/envioPOST/inicioSesion.php",
+		dataType: 'html',
+		data: dataFormulario,
+	}).done(function(data){
+		//var paso1 = JSON.stringify(data);
+		var datoslogin = JSON.parse(data);
+		if (datoslogin.error == 0){
+			$.mobile.changePage("#dialog", { transition: "pop",role: "dialog" });
+		}else{
+			if (localStorage){
+				$.each(datoslogin, function(key,value){
+					window.localStorage.setItem(key,value );
+					window.location="menuPrincipal.html";
+				});
+				
+
+			}else{
+				alert("Dispositivo no soportado");
+			}
+
+		}
+	});
+	return false;
+
+	}
+	catch(ex){
+		alert("error login");
+	}
+});	
+
+function errorLogin(data,status){
+		$("#diverror").html(data);
+		$.mobile.changePage('#diverror', 'pop', true, true);
+}
+</script>
+
+
+
+
+
+</html>

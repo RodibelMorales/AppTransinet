@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+	<title>Menu Principal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="icons/favicon.ico">
+    <link rel="stylesheet" href="jmobile/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/estilosquery.css">
+</head>
+<body class="fondoApp">
+    <div >
+        <div class="controlaIMG">
+            <img src="img/logoFinal.png" class="img-responsive">
+        </div>
+        <div data-role="content">
+            <div class="ui-grid-a"><!--grid nueva multa-->
+                <div class="ui-block-a espacioDivMenu">
+                    <div class="circuloColumna1">
+                        <a href="buscarPlaca.html"  rel="external" data-icon="arrow-r" data-iconpos="right">
+                           <img src="icons/nuevaMulta.png" class="sizeIcons">
+                        </a>
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <div id="textOpciones">
+                        <label id="sizeTextM1">Nueva Multa</label>
+                    </div>    
+                </div>
+            </div>
+            <div class="ui-grid-a"><!--grid consulta articulo-->
+                <div class="ui-block-a espacioDivMenu">
+                    <div class="circuloColumna2">
+                        <a href="verifica_articulo.html" rel="external"  >
+                           <img src="icons/reglamento.png" class="sizeIcons">
+                        </a>
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <div id="textOpciones">
+                        <label id="sizeTextM1">Consultar Reglamento</label>
+                    </div>    
+                </div>
+            </div>
+            <div class="ui-grid-a"><!-- grid verifica vehiculo-->
+                <div class="ui-block-a espacioDivMenu">
+                    <div class="circuloColumna3">
+                        <a href="verifica_vehiculo.html" rel="external" data-icon="arrow-r" data-iconpos="right">
+                           <img src="icons/verificaVehiculo.png" class="sizeIcons">
+                        </a>
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <div id="textOpciones">
+                        <label id="sizeTextM1">Verificar Vehiculo</label>
+                    </div>    
+                </div>
+            </div>
+            <div class="ui-grid-a"><!--grid configuraciones-->
+                <div class="ui-block-a espacioDivMenu">
+                    <div class="circuloColumna4">
+                        <a href="#"  id="CierraSesion" rel="external" data-icon="arrow-r" data-iconpos="right">
+                           <img src="icons/salir.png" class="sizeIcons">
+                        </a>
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <div id="textOpciones">
+                        <label id="sizeTextM1">Cerrar Sesión</label>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="jmobile/jquery-1.11.1.min.js"></script>
+<script src="jmobile/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+    $(document).on("ready", function(){
+        $('#CierraSesion').click( function(){
+            if (confirm('¿Desea Cerrar Sesión?')) {
+                if (window.localStorage) {
+                    var nombre = localStorage.getItem("id_p");
+                    $.ajax({
+                        global : false,
+                        type: "POST",
+                        //url: "http://visionquintanaroo.com/envioPOST/cierraSesion.php",
+                        url: "http://chanitoledo.com/transinet/envioPOST/cierraSesion.php",
+                        dataType : "html",
+                        data: {"usuario": nombre}
+                    }).done(function(data){
+                        var resultaddCloseSesion = JSON.parse(data);
+
+                        if (resultaddCloseSesion.errorcierraSesion == 0){
+                            $.mobile.changePage("#dialog", { transition: "pop",role: "dialog" });
+                        }else{
+                            localStorage.clear();
+                            window.location.href = "index.html";
+                        }
+                    });
+                }
+            }
+
+
+        });
+    });
+    </script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+	<title>Transinet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="icons/favicon.ico">
+	<link rel="stylesheet" href="jmobile/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/estilosquery.css">
+	<script src="jmobile/jquery-1.11.1.min.js"></script>
+	<script src="jmobile/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript">
+		$(document).on('ready', function(){
+			//Evento encargado de buscar los datos en tiempo real al presionar las teclas
+			$("#GrupoArticulo").keyup( function(event){
+				$.ajax({
+					type: "POST",
+					url: "http://chanitoledo.com/transinet/envioPOST/findArticuloMulta.php",
+					data: $("#formBuscaArticulo").serialize(),
+					dataType: "html",
+					beforeSend: function(){
+						$("#detailsBusqueda").html("<p align='center'><img src='img/loading.gif' /></p>");
+					},
+					success: function(data){
+						var respuestaBusqueda = JSON.parse(data);
+						var imprimeBusqueda= "";
+						if(respuestaBusqueda.errorBusqueda ==0){
+							$("#ResultadoBusqueda").html("<p align='center'><img class='poli' src='img/srb.png' /></p>");
+						}else{
+							var idDetalles = 0;
+							var idVermas =0;
+							$.each(respuestaBusqueda, function(key, value){
+								imprimeBusqueda+= "<li data-role='list-divider' id='headerInfo'>";
+									imprimeBusqueda+= value.grupo;
+								imprimeBusqueda+= "</li>";
+
+								imprimeBusqueda+= "<li class='bodyInfo'>";
+									imprimeBusqueda+= "<h3>"+value.articulos+"</h3>";
+									imprimeBusqueda+= "<h4> Salario Minimo:"+value.salario_min+"</h4>";
+									imprimeBusqueda+= "<label  id='verDetalles"+idVermas++ +"'>Ver Detalles</label>";
+									imprimeBusqueda+= "<label class='OcultaTexto'  id='CierraDetalles"+idVermas++ +"'>Cerrar Detalles</label>";
+									imprimeBusqueda+="<article class='detallesC' id='detallesC"+idDetalles++ +"'><textarea class='ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow'>"+value.detalles+"</textarea></article>";
+								imprimeBusqueda+= "</li>";
+							});
+							$("#ResultadoBusqueda").html(imprimeBusqueda);
+							$("#ResultadoBusqueda").listview().listview('refresh');
+						}
+					}
+				});	
+			});
+			//Evento encargado de iniciar en caso de que el usuario presione el boton buscar
+			$("#formsBuscaArticulo").on("click","#inputIniciaBusqueda",function(e){
+				e.preventDefault();
+				$.ajax({
+					type: "POST",
+					url: "http://chanitoledo.com/transinet/envioPOST/findArticuloMulta.php",
+					data: $("#formBuscaArticulo").serialize(),
+					dataType: "html",
+					beforeSend: function(){
+						$("#detailsBusqueda").html("<p align='center'><img src='img/loading.gif' /></p>");
+					},
+					success: function(data){
+						var respuestaBusqueda = JSON.parse(data);
+						var imprimeBusqueda= "";
+						if(respuestaBusqueda.errorBusqueda ==0){
+							$("#ResultadoBusqueda").html("<p align='center'><img class='poli' src='img/srb.png' /></p>");
+						}else{
+							var idDetalles = 0;
+							var idVermas =0;
+							$.each(respuestaBusqueda, function(key, value){
+								imprimeBusqueda+= "<li data-role='list-divider' id='headerInfo'>";
+									imprimeBusqueda+= value.grupo;
+								imprimeBusqueda+= "</li>";
+
+								imprimeBusqueda+= "<li class='bodyInfo'>";
+									imprimeBusqueda+= "<h3>"+value.articulos+"</h3>";
+									imprimeBusqueda+= "<h4> Salario Minimo:"+value.salario_min+"</h4>";
+									imprimeBusqueda+= "<label  id='verDetalles"+idVermas++ +"'>Ver Detalles</label>";
+									imprimeBusqueda+= "<label class='OcultaTexto'  id='CierraDetalles"+idVermas++ +"'>Cerrar Detalles</label>";
+									imprimeBusqueda+="<article class='detallesC' id='detallesC"+idDetalles++ +"'><textarea class='ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow'>"+value.detalles+"</textarea></article>";
+								imprimeBusqueda+= "</li>";
+							});
+							$("#ResultadoBusqueda").html(imprimeBusqueda);
+							$("#ResultadoBusqueda").listview().listview('refresh');
+						}
+					}
+				});		
+			
+			});
+			$("#ResultadoBusqueda").on("click","label",function(e){
+			
+				var idVer = $(this).attr("id");
+				var idDetailsClose= $("#"+idVer).parent().find(".OcultaTexto").attr("id");
+				var idDetails= $("#"+idVer).parent().find(".detallesC").attr("id");
+				
+				$('#'+idVer).on("click", function(e){
+					$('#'+idVer).addClass("OcultaTexto");
+					$('#'+idDetailsClose).removeClass("OcultaTexto");
+					$('#'+idDetails).show();
+					e.preventDefault();
+					return false;
+				});
+				$('#'+idDetailsClose).on("click", function(e){
+					$('#'+idDetailsClose).addClass("OcultaTexto");
+					$('#'+idVer).removeClass("OcultaTexto");
+					$('#'+idDetails).hide();
+					e.preventDefault();
+					return false;
+				});
+					
+
+			});
+		});
+	
+
+	</script>
+</head>
+<body class="fondoApp">
+	<div data-role="page" id="serchArticulos">
+		<div class="controlaIMG">
+			<img src="img/logoFinal.png" class="img-responsive">
+		</div>
+		<div data-role="content">
+			<div id="formsBuscaArticulo">
+				<label id="titleWelcomeLogin">Ingresar un termino Articulo</label>
+				<form method="post" id="formBuscaArticulo">
+					<input type="search" name="GrupoArticulo" id="GrupoArticulo" data-mini="true" required>
+						<div class="controlaImgLogin">
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a"><a href="menuPrincipal.html"><img src="icons/back.png" class="bttnBack"></a></div>
+								<div class="ui-block-b"><input type=image src="icons/buscar.png" id="inputIniciaBusqueda"></div>
+							</fieldset>
+						</div>
+
+				</form>	
+			</div>
+			<div id="ResultadoBusqueda">
+				<div data-role="listview" id="detailsBusqueda">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	
+</html>
